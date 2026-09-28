@@ -4,7 +4,7 @@
 pkgbase=msys2-runtime
 pkgname=('msys2-runtime' 'msys2-runtime-devel')
 pkgver=3.6.10
-pkgrel=5
+pkgrel=6
 pkgdesc="Cygwin POSIX emulation engine"
 arch=('x86_64')
 url="https://www.cygwin.com/"
@@ -74,6 +74,7 @@ _patches=(
   0042-Cygwin-console-Set-console-mode-only-if-std-in-out-e.patch
   0043-Cygwin-console-Fix-undesired-mode-change-at-exit-of-.patch
   0044-Cygwin-console-Abort-setting-disable_master_thread-w.patch
+  msys2-runtime-app-alias-deadlock.patch
 )
 source=('msys2-runtime'::git://sourceware.org/git/newlib-cygwin.git#tag=cygwin-${pkgver}
         msys2-runtime.commit
@@ -123,7 +124,8 @@ sha256sums=('6d03f5393cb76a8a28db3eab5ea855fab39ffc7d928d6fc7596af13b70867dc1'
             '131eb70a666e2db8cb461224bf5a897a37ac817e1942ce4bb8613c15511184c8'
             '55213a540dde83bde33e12c2a54e5325138fafcfb3c899d6bc4734094936cfca'
             '61d981eb0d05d11b8e6e1733417f67b9468525238d3d6ab14df0f3da34fce1e9'
-            '8da60d0d90d3aad589470bcf424b36163317a0526a479945fb2b7544e1c46c10')
+            '8da60d0d90d3aad589470bcf424b36163317a0526a479945fb2b7544e1c46c10'
+            'f482848536afc6757b0f94c27e9265f1a9b59fd6e2d33cea97e6f3c6feba8006')
 
 # Helper macros to help make tasks easier #
 apply_patch_with_msg() {
