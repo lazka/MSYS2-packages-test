@@ -138,7 +138,7 @@ package_gettext() {
   depends=('libintl' 'libgettextpo' 'libasprintf')
   license=('spdx:GPL-3.0-or-later')
 
-  mkdir -p ${pkgdir}/usr/{bin,lib,share}
+  mkdir -p ${pkgdir}/usr/share/gettext
 
   cp -rf ${srcdir}/dest/usr/libexec ${pkgdir}/usr/
 
@@ -147,12 +147,9 @@ package_gettext() {
   rm -rf ${pkgdir}/usr/bin/msys-gettextpo-0.dll
   rm -rf ${pkgdir}/usr/bin/msys-intl-8.dll
 
-  cp -rf ${srcdir}/dest/usr/share/aclocal ${pkgdir}/usr/share/
-  cp -rf ${srcdir}/dest/usr/share/doc ${pkgdir}/usr/share/
-  cp -rf ${srcdir}/dest/usr/share/info ${pkgdir}/usr/share/
-  cp -rf ${srcdir}/dest/usr/share/locale ${pkgdir}/usr/share/
-  cp -rf ${srcdir}/dest/usr/share/man ${pkgdir}/usr/share/
-
+  cp -rf ${srcdir}/dest/usr/share/{aclocal,doc,info,locale,man,gettext-${pkgver}} \
+    ${pkgdir}/usr/share/
+  cp -rf ${srcdir}/dest/usr/share/gettext/{schema,styles} ${pkgdir}/usr/share/gettext/
 }
 
 package_gettext-devel() {
@@ -162,11 +159,12 @@ package_gettext-devel() {
   options=('staticlibs')
   optdepends=('cvs: for autopoint tool')
 
-  mkdir -p ${pkgdir}/usr/{bin,include,lib,share}
+  mkdir -p ${pkgdir}/usr/share
 
   cp -rf ${srcdir}/dest/usr/include ${pkgdir}/usr/
   cp -rf ${srcdir}/dest/usr/lib ${pkgdir}/usr/
-  cp -rf ${srcdir}/dest/usr/share/gettext* ${pkgdir}/usr/share/
+  cp -rf ${srcdir}/dest/usr/share/gettext ${pkgdir}/usr/share/
+  rm -rf ${pkgdir}/usr/share/gettext/{schema,styles}
 }
 
 package_libintl() {
